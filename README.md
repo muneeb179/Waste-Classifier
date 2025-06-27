@@ -1,94 +1,88 @@
-# Rule-Based Waste Classifier ♻️
+Here’s a clean and professional `README.md` description you can use for your GitHub repository:
 
-A transparent, completely offline **expert system** that tells you *what bin* to use for everyday waste items.
-No heavy machine-learning models, no internet connection—just clear, editable rules.
-
-1. Features
-
-* Rule-based knowledge base** – every decision is an “if–then” rule you can read.
-* Synonym map** – “tin can” is treated the same as “can”, “bottle” → “plastic bottle”, etc.
-* Fuzzy matching** – minor typos such as “plastick bottle” are corrected automatically.
-* Persistent learning** – new rules are saved to *waste\_rules.json* and survive restarts.
-* Built-in metrics** – one call prints Accuracy, Precision, Recall, F1 and a confusion matrix.
-* Zero external libraries** – standard Python ≥ 3.9 only.
-
-
-2. Repository Layout
-
-```
-waste_classifier/
-│
-├─ waste_core.py          ← team-member #1 (core engine, persistence, metrics)
-├─ notebook_demo.ipynb    ← team-member #2 (demo & evaluation notebook)
-│
-├─ waste_rules.json       ← auto-generated knowledge base (editable)
-├─ classifier.log         ← log of unknown items for future rule updates
-└─ README.txt             ← this file
-```
-
-3. Quick Start
-
-1. Clone and open the folder
-
-```
-git clone <repo-url>
-cd waste_classifier
-```
-
-2. Run the interactive demo (no installs needed)
-
-```python
-# one-liner demo
-python - << 'PY'
-from waste_core import WasteClassifier
-clf = WasteClassifier()
-print(clf.classify("plastic bottle"))   # → ('Plastic', 'Recycle', 'plastic bottle')
-PY
-```
-
-3. Jupyter Notebook walkthrough
-
-Open *notebook\_demo.ipynb*, run all cells, and screenshot:
-
-* the three required example inputs (banana peel, plastic bottle, battery)
-* a few custom inputs (glass jar, tin can, coated paper)
-* the evaluation report (accuracy & F-scores)
-
-4. Adding New Rules
 ---
 
-```python
-from waste_core import WasteClassifier
-clf = WasteClassifier()
-clf.add_rule("coated paper", "Paper", "Recycle")
+# ♻️ Waste Classification Expert System
+
+A simple Python-based expert system that helps classify everyday waste items into categories like **Organic**, **Plastic**, **Hazardous**, etc., and suggests appropriate disposal actions such as **Recycle**, **Compost**, or **Take to collection point**.
+
+---
+
+## 🚀 Features
+
+* ✅ Classifies household waste based on a predefined rule set
+* ➕ Allows users to **add new waste items** and update the classification system dynamically
+* 📋 Displays all current rules in a neat tabular format
+* 📊 Provides a **category-wise summary** using NumPy analytics
+* 🖥️ Interactive **command-line menu** for easy user interaction
+* 🧠 Code divided between two team members for collaboration and modularity
+
+---
+
+## 📁 Project Structure
+
+* `rules`: Stored in a pandas `DataFrame` for easy management
+* `classify()`: Determines category and disposal action
+* `add_rule()`: Adds a new classification rule
+* `show_rules()`: Prints all rules
+* `show_summary()`: Shows summary counts of each category using NumPy
+* `show_menu()`: Runs the text-based interactive system
+
+---
+
+## 🛠️ Technologies Used
+
+* **Python 3**
+* **pandas** – for structured rule management
+* **NumPy** – for category analysis and summary statistics
+
+---
+
+## 📦 How to Run
+
+1. Make sure you have Python 3 installed.
+2. Install dependencies:
+
+   ```bash
+   pip install pandas numpy
+   ```
+3. Run the program:
+
+   ```bash
+   python waste_classifier.py
+   ```
+
+---
+
+## 👨‍💻 Team Division
+
+* **Member 1**: Implemented rule base, classification logic, rule addition, and display
+* **Member 2**: Implemented category summary analytics and user interaction menu system
+
+---
+
+## 📌 Example Use Case
+
+```bash
+--- Waste Classifier Menu ---
+1. Classify a waste item
+2. Add a new rule
+3. Show all rules
+4. Show category summary
+5. Exit
 ```
 
-A new entry is written to *waste\_rules.json*.
-Re-run `clf.classify("coated paper")` → `('Paper', 'Recycle', 'coated paper')`.
+---
 
-5. Testing & Metrics
+## 📈 Future Improvements
 
-Inside the notebook you can call
+* Add a GUI or web interface
+* Save and load rules from CSV or database
+* Suggest alternatives for hazardous items
+* Include language localization support
 
-```python
-TEST_SET = {
-    "banana peel"   : "Organic",
-    "plastic bottle": "Plastic",
-    "battery"       : "Hazardous",
-    "glass jar"     : "Glass",
-    "egg shell"     : "Organic",
-    "can"           : "Metal",
-    "unknown item"  : None
-}
-clf.evaluate(TEST_SET)
-```
+---
 
-You’ll get a table of Precision, Recall, F1 and an overall Accuracy line.
+## 📃 License
 
-
-6. Contributing
-
-1. **Fork** → **branch** → **commit**
-2. Add or improve rules in *waste\_rules.json* **or** via `clf.add_rule()` and commit the updated file.
-3. Run *notebook\_demo.ipynb*; make sure accuracy is still ≥ 90 %.
-4. Open a pull request.
+This project is for educational purposes. Feel free to use or adapt with credit.
