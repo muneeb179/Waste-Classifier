@@ -1,7 +1,3 @@
-Here’s a clean and professional `README.md` description you can use for your GitHub repository:
-
----
-
 # ♻️ Waste Classification Expert System
 
 A simple Python-based expert system that helps classify everyday waste items into categories like **Organic**, **Plastic**, **Hazardous**, etc., and suggests appropriate disposal actions such as **Recycle**, **Compost**, or **Take to collection point**.
